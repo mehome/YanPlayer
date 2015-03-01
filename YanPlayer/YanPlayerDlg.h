@@ -101,6 +101,7 @@ public:
 	static UINT CALLBACK ThreadCodecPCM(LPVOID lp);
 	static UINT CALLBACK ThreadCodecYUV(LPVOID lp);
 	static UINT CALLBACK ThreadEncodeYUV(LPVOID lp);
+	static UINT CALLBACK ThreadRecvData(LPVOID lp);
 	afx_msg void OnClose();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
@@ -109,4 +110,5 @@ public:
 	void CodecPCMFile(CString strSrcFile, CString strDstFile);
 	afx_msg void OnBnClickedButtonDecodeaudio();
 	afx_msg void OnBnClickedButtonSel();
+	afx_msg void OnBnClickedButton5();
 };

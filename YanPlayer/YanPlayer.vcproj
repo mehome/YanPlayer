@@ -212,6 +212,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\TcpObj.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\YanPlayer.cpp"
 				>
 			</File>
@@ -239,6 +243,10 @@
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TcpObj.h"
 				>
 			</File>
 			<File

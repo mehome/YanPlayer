@@ -16,13 +16,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 中文(中华人民共和国) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -83,15 +81,16 @@ EXSTYLE WS_EX_APPWINDOW
 CAPTION "YanPlayer"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_VEDIO_SHOW,"Static",SS_BLACKFRAME,16,36,748,422
-    PUSHBUTTON      "播放",IDC_BUTTON_SELFILE,265,18,50,14
+    CONTROL         "",IDC_VEDIO_SHOW,"Static",SS_BLACKFRAME,16,36,746,422
+    PUSHBUTTON      "播放",IDC_BUTTON_SELFILE,264,17,50,14
     EDITTEXT        IDC_EDIT_FILE_PATH,15,18,184,14,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "选择文件",IDC_BUTTON_SEL,206,18,50,14
-    PUSHBUTTON      "解码YUV",IDC_BUTTON_DECODEVIDEO,324,18,50,14
-    PUSHBUTTON      "解码PCM",IDC_BUTTON_DECODEAUDIO,383,18,50,14
-    PUSHBUTTON      "编码YUV",IDC_BUTTON3,442,18,50,14
-    PUSHBUTTON      "编码PCM",IDC_BUTTON4,501,18,50,14
-    LTEXT           "",IDC_STATIC_STATE,567,19,178,12
+    PUSHBUTTON      "解码YUV",IDC_BUTTON_DECODEVIDEO,327,17,50,14
+    PUSHBUTTON      "解码PCM",IDC_BUTTON_DECODEAUDIO,390,17,50,14
+    PUSHBUTTON      "编码YUV",IDC_BUTTON3,453,17,50,14
+    PUSHBUTTON      "编码PCM",IDC_BUTTON4,516,17,50,14
+    PUSHBUTTON      "选择文件",IDC_BUTTON_SEL,201,17,50,14
+    LTEXT           "",IDC_STATIC_STATE,577,20,82,8
+    PUSHBUTTON      "Button5",IDC_BUTTON5,657,18,50,14
 END
 
 
@@ -101,7 +100,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_YANPLAYER_DIALOG, DIALOG
     BEGIN
@@ -113,7 +112,7 @@ BEGIN
 END
 #endif    // APSTUDIO_INVOKED
 
-#endif    // 中文(中华人民共和国) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -121,10 +120,8 @@ END
 // 英语(美国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //

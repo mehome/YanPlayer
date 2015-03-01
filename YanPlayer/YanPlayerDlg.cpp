@@ -4,9 +4,11 @@
 #include "stdafx.h"
 #include "YanPlayer.h"
 #include "YanPlayerDlg.h"
+#include <Windows.h>
 #include <process.h>
 #include <Mmsystem.h>
 #include <fcntl.h>
+#include "TcpObj.h"
 #pragma comment(lib, "Winmm.lib")  
 
 
@@ -247,6 +249,7 @@ BEGIN_MESSAGE_MAP(CYanPlayerDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_DECODEVIDEO, &CYanPlayerDlg::OnBnClickedButtonDecodevideo)
 	ON_BN_CLICKED(IDC_BUTTON_DECODEAUDIO, &CYanPlayerDlg::OnBnClickedButtonDecodeaudio)
 	ON_BN_CLICKED(IDC_BUTTON_SEL, &CYanPlayerDlg::OnBnClickedButtonSel)
+	ON_BN_CLICKED(IDC_BUTTON5, &CYanPlayerDlg::OnBnClickedButton5)
 END_MESSAGE_MAP()
 
 
@@ -260,6 +263,13 @@ BOOL CYanPlayerDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
+
+	WSADATA  Ws;
+	if (WSAStartup(MAKEWORD(2,2), &Ws) != 0)
+	{
+		MessageBox("Init Windows Socket Failed");
+		return TRUE;
+	}
 
 	av_register_all();
 
@@ -1518,7 +1528,7 @@ UINT CALLBACK CYanPlayerDlg::ThreadCodecPCM(LPVOID lp)
 
 void CYanPlayerDlg::OnBnClickedButtonSel()
 {
-	CString strFilter = _T("RMVB(*.rmvb)|*.rmvb|H264(*.264)|*.264|MP4(*.mp4)|*.mp4||");
+	CString strFilter = _T("H264(*.264)|*.264|MP4(*.mp4)|*.mp4||");
 	CFileDialog FileDlg(TRUE, NULL, NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, strFilter, this);
 	if (FileDlg.DoModal() == IDOK)
 	{
@@ -1526,3 +1536,38 @@ void CYanPlayerDlg::OnBnClickedButtonSel()
 		UpdateData(FALSE);
 	}
 }
+
+
+void CYanPlayerDlg::OnBnClickedButton5()
+{
+	UINT uID = 0;
+	_beginthreadex(NULL, 0, ThreadRecvData, (LPVOID)this, 0, &uID);
+}
+
+UINT CALLBACK CYanPlayerDlg::ThreadRecvData(LPVOID lp)
+{
+	CYanPlayerDlg *pDlg = (CYanPlayerDlg *)lp;
+
+	CTcpObj TcpObj("192.168.65.110", 8765);
+
+	WORD wType = 0;
+	UINT nActualReadLen = 0;
+	UINT nReadLen = 4;
+	LPCSTR lpBuf = NULL;
+
+	char *iFrameSize;
+	iFrameSize = (char *)TcpObj.ReadData(&wType, &nActualReadLen, &nReadLen);
+	CString strLog;
+	strLog.Format("Ö¡³¤¶ÈÎª:%s\n", iFrameSize);
+	OutputDebugString(strLog);
+	UINT iSize = *((int *)iFrameSize);
+	if (nActualReadLen == 4)
+	{
+		BYTE *buf = (BYTE *)TcpObj.ReadData(&wType, &nActualReadLen, &iSize);
+		
+	}
+
+	return 0;
+
+}
+
